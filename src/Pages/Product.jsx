@@ -14,19 +14,19 @@ const Product = () => {
     const dispatch = useDispatch();
 
     const [searchParams] = useSearchParams();
-   
+
     useEffect(() => {
 
         if (products?.length === 0) {
-          
+
             let params = {
                 category: searchParams.getAll("category")
-              };
-        
+            };
+
 
             dispatch(fetchData(params))
         }
-    }, [dispatch, products?.length , searchParams])
+    }, [dispatch, products?.length, searchParams])
 
     console.log("Products", products)
 
@@ -64,7 +64,7 @@ const Product = () => {
 
 
 
-function ProductSimple({image,title,price}) {
+function ProductSimple({ image, title, price }) {
     return (
         <Center py={12} >
             <Box
@@ -108,16 +108,16 @@ function ProductSimple({image,title,price}) {
                     />
                 </Box>
                 <Stack pt={10} align={'center'}>
-                  
+
                     <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
-                      {title}
+                        {title}
                     </Heading>
                     <Stack direction={'row'} align={'center'}>
                         <Text fontWeight={800} fontSize={'xl'}>
-                           ₹{price}
+                            ₹{price}
                         </Text>
                         <Text textDecoration={'line-through'} color={'gray.600'}>
-                           ₹199
+                            ₹199
                         </Text>
                     </Stack>
                 </Stack>

@@ -1,4 +1,10 @@
 import {
+  ADD_PRODUCT_CART_FAILURE,
+  ADD_PRODUCT_CART_REQUEST,
+  ADD_PRODUCT_CART_SUCCESS,
+  FETCH_CART_FAILURE,
+  FETCH_CART_REQUEST,
+  FETCH_CART_SUCCESS,
   FETCH_DATA_FAILURE,
   FETCH_DATA_REQUEST,
   FETCH_DATA_SUCCESS,
@@ -12,6 +18,7 @@ const init = {
   error: "",
   loading: true,
   currentProduct: {},
+  cart: [],
 };
 
 const productReducer = (state = init, action) => {
@@ -61,6 +68,56 @@ const productReducer = (state = init, action) => {
     }
 
     case GET_SINGLE_PRODUCT_FAILURE: {
+      return {
+        ...state,
+        error: payload,
+        loading: false,
+      };
+    }
+
+    case ADD_PRODUCT_CART_REQUEST: {
+      return {
+        ...state,
+        error: "",
+        loading: true,
+      };
+    }
+
+    case ADD_PRODUCT_CART_SUCCESS: {
+      return {
+        ...state,
+        error: "",
+        cart: [...state.cart, payload],
+        loading: false,
+      };
+    }
+
+    case ADD_PRODUCT_CART_FAILURE: {
+      return {
+        ...state,
+        error: payload,
+        loading: false,
+      };
+    }
+
+    case FETCH_CART_REQUEST: {
+      return {
+        ...state,
+        error: "",
+        loading: true,
+      };
+    }
+
+    case FETCH_CART_SUCCESS: {
+      return {
+        ...state,
+        error: "",
+        cart: [...payload],
+        loading: false,
+      };
+    }
+
+    case FETCH_CART_FAILURE: {
       return {
         ...state,
         error: payload,

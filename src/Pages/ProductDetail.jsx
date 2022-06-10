@@ -25,7 +25,7 @@ import { useEffect } from 'react';
 import { MdLocalShipping } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getSingleProduct } from '../Redux/Products/action';
+import { addProductCart, getSingleProduct } from '../Redux/Products/action';
 
 export default function ProductDetail() {
 
@@ -53,7 +53,13 @@ export default function ProductDetail() {
   }, [dispatch, id])
 
 
+  
+  const addToCartHandler = () => {
 
+     currentProduct && dispatch(addProductCart(currentProduct));
+
+
+  }
 
 
 
@@ -147,7 +153,11 @@ export default function ProductDetail() {
             _hover={{
               transform: 'translateY(2px)',
               boxShadow: 'lg',
-            }}>
+            }}
+            
+            onClick={addToCartHandler}
+            
+            >
             Add to cart
           </Button>
 
@@ -168,11 +178,13 @@ export default function ProductDetail() {
 
 function Rating({ rating }) {
   return (
-    <Box d="flex" alignItems="center">
+    <Box display={"flex"} gap={"10px"} >
       {Array(5)
         .fill('')
         .map((_, i) => {
-          console.log( `rating`, rating);
+
+          // console.log( `rating`, rating);
+
           const roundedRating = Math.round(rating * 2) / 2;
           if (roundedRating - i >= 1) {
             return (
