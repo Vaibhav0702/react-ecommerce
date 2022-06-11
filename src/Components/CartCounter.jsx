@@ -10,7 +10,7 @@ const CartCounter = () => {
 
     const cart = useSelector((store) => store.ecommerceData.cart);
 
-    console.log("cart : ", cart)
+    // console.log("cart : ", cart)
 
 
    const dispatch = useDispatch();

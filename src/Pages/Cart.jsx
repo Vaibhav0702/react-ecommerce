@@ -12,7 +12,7 @@ const Cart = () => {
 
   const cart = useSelector((store) => store.ecommerceData.cart);
 
-  console.log("cart : ", cart)
+  // console.log("cart : ", cart)
 
   const dispatch = useDispatch()
 
@@ -39,7 +39,8 @@ const Cart = () => {
 
   return (
     <Box>
-      <Heading as="h2" size="xl" textAlign="center"  >Cart </Heading>
+      <Heading as="h2" size="xl" textAlign="center"  >Cart</Heading>
+
       {
         cart.length && cart.map(product => {
           return <CartItem key={product.id} id={product.id} title={product.title} price={product.price} description={product.description} image={product.image} removeProduct={removeProduct} />

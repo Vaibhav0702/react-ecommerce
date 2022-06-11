@@ -10,7 +10,7 @@ import {
     MenuItem,
 } from '@chakra-ui/react'
 
-
+import { Link } from "react-router-dom"
 
 const Profile = () => {
     return (
@@ -21,8 +21,14 @@ const Profile = () => {
                     <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov' />
                 </MenuButton>
                 <MenuList>
-                    <MenuItem>Cart</MenuItem>
-                    <MenuItem>LogIn</MenuItem>
+
+                    <Link to="/cart" ><MenuItem>Cart</MenuItem></Link>
+
+                    <Link to="/orders"   >  <MenuItem>My Orders</MenuItem></Link>
+
+                    <Link to="/login"   >  <MenuItem>LogIn</MenuItem></Link>
+
+                 
                     <MenuItem>LogOut</MenuItem>
 
                 </MenuList>

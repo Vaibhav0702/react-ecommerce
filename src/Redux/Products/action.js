@@ -15,6 +15,9 @@ import {
   FETCH_DATA_FAILURE,
   FETCH_DATA_REQUEST,
   FETCH_DATA_SUCCESS,
+  FETCH_ORDERS_FAILURE,
+  FETCH_ORDERS_REQUEST,
+  FETCH_ORDERS_SUCCESS,
   GET_SINGLE_PRODUCT_FAILURE,
   GET_SINGLE_PRODUCT_REQUEST,
   GET_SINGLE_PRODUCT_SUCCESS,
@@ -270,6 +273,67 @@ const emptyCart = (payload) => (dispatch) => {
     .catch((err) => dispatch(emptyCartFailure()));
 };
 
+// ---------------------fetch orders 
+
+
+
+const fetchOrderRequest = (payload) => {
+  return {
+    type: FETCH_ORDERS_REQUEST,
+    payload,
+  };
+};
+
+const fetchOrderSuccess = (payload) => {
+  return {
+    type: FETCH_ORDERS_SUCCESS,
+    payload,
+  };
+};
+
+const fetchOrderFailure = (payload) => {
+  return {
+    type: FETCH_ORDERS_FAILURE,
+    payload,
+  };
+};
+
+const fetchOrder = (payload) => (dispatch) => {
+  dispatch(fetchOrderRequest());
+
+  axios
+    .get("/orders")
+    .then((res) => dispatch(fetchOrderSuccess(res.data)))
+    .catch((err) => dispatch(fetchOrderFailure(err.data)));
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export {
   fetchData,
   getSingleProduct,
@@ -278,4 +342,5 @@ export {
   deleteProductCart,
   addOrder,
   emptyCart,
+  fetchOrder,
 };
