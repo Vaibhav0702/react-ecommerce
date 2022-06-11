@@ -2,7 +2,9 @@ import { Box, Button, Heading, Image, Stack, Text, useColorModeValue } from '@ch
 import React from 'react'
 
 import { DeleteIcon } from "@chakra-ui/icons"
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addOrder, deleteProductCart } from '../Redux/Products/action';
+import CheckOut from '../Components/CheckOut';
 
 const Cart = () => {
 
@@ -12,9 +14,23 @@ const Cart = () => {
 
   console.log("cart : ", cart)
 
+  const dispatch = useDispatch()
+
+  const removeProduct = (id) => {
+  
+    console.log("Going to remove product" , id)
+
+    dispatch(deleteProductCart(id));
 
 
+  }
 
+ 
+  const checkOutHandler = () => {
+ 
+    dispatch(addOrder(cart) )
+
+  }
 
 
 
@@ -26,30 +42,12 @@ const Cart = () => {
       <Heading as="h2" size="xl" textAlign="center"  >Cart </Heading>
       {
         cart.length && cart.map(product => {
-          return <CartItem key={product.id} title={product.title} price={product.price} description={product.description} image={product.image} />
+          return <CartItem key={product.id} id={product.id} title={product.title} price={product.price} description={product.description} image={product.image} removeProduct={removeProduct} />
         })
       }
 
 
-      <Button
-        rounded={'none'}
-        w={'full'}
-        mt={8}
-        size={'lg'}
-        py={'7'}
-        bg={useColorModeValue('gray.900', 'gray.50')}
-        color={useColorModeValue('white', 'gray.900')}
-        textTransform={'uppercase'}
-        _hover={{
-          transform: 'translateY(2px)',
-          boxShadow: 'lg',
-        }}
-
-
-
-      >
-        CHECKOUT
-      </Button>
+      <CheckOut  cart={cart} checkOutHandler={checkOutHandler}   />
 
     </Box>
   )
@@ -57,10 +55,10 @@ const Cart = () => {
 
 
 
-function CartItem({ title, image, description, price, }) {
+function CartItem({ title, image, description, price, removeProduct , id }) {
 
   return (
-    <Box border="1px solid red" rounded="lg" width="fit-content" margin="auto" >
+    <Box border="1px solid red" rounded="lg" width="fit-content" margin="auto" marginBottom="2rem" >
 
       <Stack direction={{ base: "column", md: "row" }} justifyContent="center" alignItems={"center"}   >
         <Box height={"300px"} width="300px"
@@ -94,11 +92,11 @@ function CartItem({ title, image, description, price, }) {
 
         </Box>
 
-        <Box height={"300px"} width="300px"   >
+        <Box height={"300px"} width="350px"   >
           <Stack p={4} >
             <Heading as="h3" size="lg"  >{title}</Heading>
-
             <Box overflow={"hidden"} whiteSpace="nowrap" textOverflow={"ellipsis"}  >
+
 
               <Text  > {description} </Text>
 
@@ -115,7 +113,7 @@ function CartItem({ title, image, description, price, }) {
 
             </Text>
 
-            <Button variant={"solid"} leftIcon={<DeleteIcon />}  >Remove</Button>
+            <Button variant={"solid"} leftIcon={<DeleteIcon />} onClick={()=> removeProduct(id) }  >Remove</Button>
 
           </Stack>
         </Box>

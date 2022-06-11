@@ -11,6 +11,8 @@ import {
   GET_SINGLE_PRODUCT_FAILURE,
   GET_SINGLE_PRODUCT_REQUEST,
   GET_SINGLE_PRODUCT_SUCCESS,
+  REMOVE_PRODUCT_CART_FAILURE,
+  REMOVE_PRODUCT_CART_REQUEST,
 } from "./actionTypes";
 
 const init = {
@@ -118,6 +120,22 @@ const productReducer = (state = init, action) => {
     }
 
     case FETCH_CART_FAILURE: {
+      return {
+        ...state,
+        error: payload,
+        loading: false,
+      };
+    }
+
+    case REMOVE_PRODUCT_CART_REQUEST: {
+      return {
+        ...state,
+        error: "",
+        loading: true,
+      };
+    }
+
+    case REMOVE_PRODUCT_CART_FAILURE: {
       return {
         ...state,
         error: payload,
