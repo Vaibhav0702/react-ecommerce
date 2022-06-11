@@ -29,7 +29,7 @@ const Product = () => {
         }
     }, [dispatch, products?.length, searchParams])
 
-    console.log("Products", products)
+    // console.log("Products", products)
 
 
     return (

@@ -8,7 +8,7 @@ import {
 
   Stack,
   Collapse,
-
+ 
 
   useColorModeValue,
   useBreakpointValue,
@@ -82,9 +82,14 @@ const Navbar = () => {
             </Box>
 
           </Link>
-
+          
+          
+       
 
           <Profile />
+
+      
+          
         </Stack>
       </Flex>
 

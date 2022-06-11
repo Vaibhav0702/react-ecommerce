@@ -16,11 +16,12 @@ const Profile = () => {
     return (
 
         <Flex>
+           
             <Menu>
                 <MenuButton as={Button} rounded="full" variant="link" cursor="pointer" minW={0} >
                     <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov' />
                 </MenuButton>
-                <MenuList>
+                <MenuList zIndex={1000}   >
 
                     <Link to="/cart" ><MenuItem>Cart</MenuItem></Link>
 
@@ -33,6 +34,7 @@ const Profile = () => {
 
                 </MenuList>
             </Menu>
+            
         </Flex>
 
 

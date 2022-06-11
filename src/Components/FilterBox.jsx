@@ -89,13 +89,16 @@ const FilterBox = () => {
           </VStack>
         </CheckboxGroup>
       </Box>
-      <Box display={{ base: "block", md: "none" }} p="0rem 2rem" >
+
+
+
+      <Box display={{ base: "block", md: "none" }} p="0rem 2rem"     >
 
         <Menu closeOnSelect={false}>
           <MenuButton as={Button} colorScheme='blue'>
             MenuItem
           </MenuButton>
-          <MenuList minWidth='240px'>
+          <MenuList minWidth='240px'  zIndex={1000} >
             <MenuOptionGroup defaultValue='asc' title='Order' type='radio'>
               <MenuItemOption value='asc'>Ascending</MenuItemOption>
               <MenuItemOption value='desc'>Descending</MenuItemOption>

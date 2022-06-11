@@ -7,7 +7,12 @@ import {
 import thunk from "redux-thunk";
 import productReducer from "./Products/reducer";
 
-const rootReducer = combineReducers({ ecommerceData: productReducer });
+import { authReducer } from "./auth/reducer";
+
+const rootReducer = combineReducers({
+  ecommerceData: productReducer,
+  authReducer,
+});
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -16,6 +21,6 @@ export const store = creatStore(
   composeEnhancers(applyMiddleware(thunk))
 );
 
-console.log(`Store :` , store.getState())
+console.log(`Store :`, store.getState());
 
 // store.subscribe(() => console.log( `Store After subscribe :` , store.getState()))

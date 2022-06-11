@@ -24,7 +24,7 @@ const init = {
   loading: true,
   currentProduct: {},
   cart: [],
-  orders:[],
+  orders: [],
 };
 
 const productReducer = (state = init, action) => {
@@ -147,11 +147,7 @@ const productReducer = (state = init, action) => {
       };
     }
 
-
-
-
-
-    case  FETCH_ORDERS_REQUEST: {
+    case FETCH_ORDERS_REQUEST: {
       return {
         ...state,
         error: "",
@@ -175,34 +171,6 @@ const productReducer = (state = init, action) => {
         loading: false,
       };
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     default:
       return state;
