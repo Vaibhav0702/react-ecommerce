@@ -4,6 +4,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import AuthWrapper from '../Components/AuthWrapper'
 import Cart from '../Pages/Cart'
+import ErrorPage from '../Pages/ErrorPage'
 import Home from '../Pages/Home'
 import Login from '../Pages/Login'
 import Orders from '../Pages/Orders'
@@ -20,7 +21,7 @@ const AllRoute = () => {
 
         <Route path='/products' element={<Product />} />
 
-        <Route path='/cart' element={<AuthWrapper>  <Cart />  </AuthWrapper>} />
+        <Route path='/shoppingcart' element={<AuthWrapper>  <Cart />  </AuthWrapper>} />
 
         <Route path='/products/:id' element={<ProductDetail />} />
 
@@ -28,6 +29,7 @@ const AllRoute = () => {
         
         <Route path='/login' element={<Login />} />
 
+        <Route path='/error' element={<ErrorPage/>} />
 
 
       </Routes>

@@ -49,7 +49,7 @@ const Product = () => {
                     <Flex flexWrap="wrap" justifyContent="space-around" >
                         {
                             products.map(product => {
-                                return <ProductSimple key={product.id} image={product.image} title={product.title} price={product.price} />
+                                return <ProductSimple key={product.id}  id={product.id}   image={product.image} title={product.title} price={product.price} />
                             })
                         }
                     </Flex>

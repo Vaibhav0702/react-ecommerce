@@ -24,12 +24,13 @@ import { useEffect } from 'react';
 
 import { MdLocalShipping } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { addProductCart, getSingleProduct } from '../Redux/Products/action';
 
 export default function ProductDetail() {
 
 
+  const navigate = useNavigate();
 
   const { id } = useParams();
 
@@ -47,16 +48,16 @@ export default function ProductDetail() {
 
 
     if (id) {
-      dispatch(getSingleProduct(id));
+      dispatch(getSingleProduct(id , navigate));
     }
 
-  }, [dispatch, id])
+  }, [dispatch,navigate, id])
 
 
-  
+
   const addToCartHandler = () => {
 
-     currentProduct && dispatch(addProductCart(currentProduct));
+    currentProduct && dispatch(addProductCart(currentProduct));
 
 
   }
@@ -107,7 +108,7 @@ export default function ProductDetail() {
           </Box>
           <Flex>
             {
-              Rating({rating : Number(currentProduct.rating?.rate)} ) 
+              Rating({ rating: Number(currentProduct.rating?.rate) })
 
             }
 
@@ -141,26 +142,28 @@ export default function ProductDetail() {
 
           </Stack>
 
-          <Button
-            rounded={'none'}
-            w={'full'}
-            mt={8}
-            size={'lg'}
-            py={'7'}
-            bg={useColorModeValue('gray.900', 'gray.50')}
-            color={useColorModeValue('white', 'gray.900')}
-            textTransform={'uppercase'}
-            _hover={{
-              transform: 'translateY(2px)',
-              boxShadow: 'lg',
-            }}
-            
-            onClick={addToCartHandler}
-            
-            >
-            Add to cart
-          </Button>
+          <Link to={"/shoppingcart"}   >
 
+            <Button
+              rounded={'none'}
+              w={'full'}
+              mt={8}
+              size={'lg'}
+              py={'7'}
+              bg={useColorModeValue('gray.900', 'gray.50')}
+              color={useColorModeValue('white', 'gray.900')}
+              textTransform={'uppercase'}
+              _hover={{
+                transform: 'translateY(2px)',
+                boxShadow: 'lg',
+              }}
+
+              onClick={addToCartHandler}
+
+            >
+              Add to cart
+            </Button>
+          </Link>
           <Stack direction="row" alignItems="center" justifyContent={'center'}>
             <MdLocalShipping />
             <Text>2-3 business days delivery</Text>

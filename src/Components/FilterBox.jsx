@@ -1,5 +1,5 @@
 
-import { Box, Button, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, IconButton, Text, VStack } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 
 import { Checkbox, CheckboxGroup } from '@chakra-ui/react'
@@ -17,6 +17,7 @@ import {
 import { useSearchParams } from 'react-router-dom'
 import { fetchData } from '../Redux/Products/action'
 import { useDispatch } from 'react-redux'
+import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
 
 
 
@@ -96,7 +97,7 @@ const FilterBox = () => {
 
         <Menu closeOnSelect={false}>
           <MenuButton as={Button} colorScheme='blue'>
-            MenuItem
+             Menu
           </MenuButton>
           <MenuList minWidth='240px'  zIndex={1000} >
             <MenuOptionGroup defaultValue='asc' title='Order' type='radio'>

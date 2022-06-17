@@ -33,9 +33,9 @@ export default function Login() {
 
   const authStatus = useSelector(store => store.authReducer.auth);
 
-  const [userEmail, setUserEmail] = useState("");
+  const [userEmail, setUserEmail] = useState("eve.holt@reqres.in"); // for testing perpose otherwise it should be empty string
 
-  const [userPassword, setUserPassword] = useState("");
+  const [userPassword, setUserPassword] = useState("cityslicka"); // for testing perpose otherwise it should be empty string
 
   const handleUserEmailChange = (e) => {
     setUserEmail(e.target.value);

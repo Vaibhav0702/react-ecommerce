@@ -8,11 +8,17 @@ import {
 
   Stack,
   Collapse,
- 
+
 
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  Button,
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  DrawerOverlay,
 } from '@chakra-ui/react';
 import {
   HamburgerIcon,
@@ -27,11 +33,13 @@ import Profile from './Profile';
 import CartCounter from './CartCounter';
 import { Link } from 'react-router-dom';
 
+
 const Navbar = () => {
-  const { isOpen, onToggle } = useDisclosure();
+  const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
 
   return (
     <Box>
+
       <Flex
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
@@ -54,14 +62,47 @@ const Navbar = () => {
             variant={'ghost'}
             aria-label={'Toggle Navigation'}
           />
+
+          <Drawer onClose={onClose} isOpen={isOpen}>
+            <DrawerOverlay />
+            <DrawerContent>
+              <DrawerHeader borderBottomWidth='1px'>Basic Drawer</DrawerHeader>
+              <DrawerBody>
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+
+               
+
+
+              </DrawerBody>
+            </DrawerContent>
+          </Drawer>
+
+
+
+
+
+
+
+
         </Flex>
+
+
+
+
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          <Text
-            textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-            fontFamily={'heading'}
-            color={useColorModeValue('gray.800', 'white')}>
-            Logo
-          </Text>
+          <Link to="/"   >
+            <Text
+              textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
+              fontFamily={'heading'}
+              color={useColorModeValue('gray.800', 'white')}>
+              Logo
+            </Text>
+
+
+          </Link>
+
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             {/* <DesktopNav /> */}
@@ -74,7 +115,22 @@ const Navbar = () => {
           direction={'row'}
           spacing={6}>
 
-          <Link  to="/cart"    >
+
+          <Link to="/products"   >
+            <Button
+              display={{ base: "none", md: "block" }}
+              textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
+              fontFamily={'heading'}
+
+              color={useColorModeValue('gray.800', 'white')}>
+              Products
+            </Button>
+
+
+          </Link>
+
+
+          <Link to="/shoppingcart"    >
 
             <Box position="relative" padding="0 0.5rem 0 0" >
               <CartCounter />
@@ -82,14 +138,12 @@ const Navbar = () => {
             </Box>
 
           </Link>
-          
-          
-       
+
 
           <Profile />
 
-      
-          
+
+
         </Stack>
       </Flex>
 

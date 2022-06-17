@@ -16,8 +16,11 @@ import {
 } from '@chakra-ui/react'
 
 
-export default function CheckOut({ cart , checkOutHandler }) {
+
+export default function CheckOut({ cart, checkOutHandler }) {
+
     const { isOpen, onOpen, onClose } = useDisclosure()
+
     return (
         <Box>
             <Button
@@ -50,19 +53,19 @@ export default function CheckOut({ cart , checkOutHandler }) {
                         {
                             cart.map(product => {
                                 return (
-                                    <Box  key={product.id} mb="1rem" > 
-                                    
+                                    <Box key={product.id} mb="1rem" >
+
                                         <Flex>
-                                           
+
                                             <Box>
-                                               
-                                               <Image  src={product.image}  border={"1px solid black"}  rounded="lg" objectFit={"contain"} alt="prod" boxSize={"100px"} />
+
+                                                <Image src={product.image} border={"1px solid black"} rounded="lg" objectFit={"contain"} alt="prod" boxSize={"100px"} />
 
                                             </Box>
-                                            
+
                                             <Box maxW={"250px"} ml="1rem"   >
-                                                 
-                                                 <Text  fontSize={"lg"}    >{product.title}</Text>
+
+                                                <Text fontSize={"lg"}    >{product.title}</Text>
 
 
 
@@ -70,7 +73,7 @@ export default function CheckOut({ cart , checkOutHandler }) {
 
 
                                         </Flex>
-                                    
+
                                     </Box>
                                 )
                             })
@@ -80,10 +83,19 @@ export default function CheckOut({ cart , checkOutHandler }) {
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme='blue' mr={3} onClick={checkOutHandler}>
-                           Confirm
-                        </Button>
-                        
+
+
+                     
+
+                            <Button colorScheme='blue' mr={3} onClick={checkOutHandler}>
+                                Confirm
+                            </Button>
+
+
+                     
+
+
+
                     </ModalFooter>
                 </ModalContent>
             </Modal>

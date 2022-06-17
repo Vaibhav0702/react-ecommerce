@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import {
   ADD_ORDER_FAILURE,
   ADD_ORDER_REQUEST,
@@ -25,6 +26,9 @@ import {
   REMOVE_PRODUCT_CART_REQUEST,
   REMOVE_PRODUCT_CART_SUCCESS,
 } from "./actionTypes";
+
+
+
 
 // -------------fetchData-------
 
@@ -87,13 +91,21 @@ const getSingleProductFailure = (payload) => {
   };
 };
 
-const getSingleProduct = (id) => (dispatch) => {
+const getSingleProduct = (id , navigate) => (dispatch) => {
   dispatch(getSingleProductRequest());
 
   axios
     .get(`/products/${id}`)
     .then((res) => dispatch(getSingleProductSuccess(res.data)))
-    .catch((err) => dispatch(getSingleProductFailure(err.data)));
+    .catch((err) => {
+      dispatch(getSingleProductFailure(err.data));
+      if(err.message === "Request failed with status code 404")
+      {
+          
+               navigate("/error")
+          
+      }
+    });
 };
 
 // ----------------Add to cart
@@ -230,7 +242,7 @@ const addOrder = (payload) => (dispatch) => {
 
   Promise.all(orderPayload)
     .then((res) => dispatch(addOrderSuccess()))
-    .then(() => dispatch(emptyCart(payload)))   // it makes cart empty after add order
+    .then(() => dispatch(emptyCart(payload))) // it makes cart empty after add order
     .catch((err) => dispatch(addOrderFailure())); // resolve all promises of orderPayload
 };
 
@@ -273,9 +285,7 @@ const emptyCart = (payload) => (dispatch) => {
     .catch((err) => dispatch(emptyCartFailure()));
 };
 
-// ---------------------fetch orders 
-
-
+// ---------------------fetch orders
 
 const fetchOrderRequest = (payload) => {
   return {
@@ -306,33 +316,6 @@ const fetchOrder = (payload) => (dispatch) => {
     .then((res) => dispatch(fetchOrderSuccess(res.data)))
     .catch((err) => dispatch(fetchOrderFailure(err.data)));
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export {
   fetchData,

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addOrder, deleteProductCart } from '../Redux/Products/action';
 import CheckOut from '../Components/CheckOut';
 
+
 const Cart = () => {
 
 
@@ -29,6 +30,9 @@ const Cart = () => {
   const checkOutHandler = () => {
  
     dispatch(addOrder(cart) )
+
+  
+
 
   }
 
